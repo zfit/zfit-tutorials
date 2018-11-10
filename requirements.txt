@@ -1,0 +1,2 @@
+git+https://github.com/zfit/zfit.git#egg=zfit
+seaborn
