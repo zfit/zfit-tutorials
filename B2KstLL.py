@@ -114,9 +114,8 @@ class B2Kstll:
         self.obs = costheta_l * costheta_k * phi
         self.params = {}
 
-
-    def apply_fold(self, name, dataset=None):
-        pdf_class, param_names, data_transform = self.FOLDS[name]
+    def get_folded_pdf(self, name):
+        pdf_class, param_names, _ = self.FOLDS[name]
 
         def get_params(param_list):
             out = {}
@@ -130,9 +129,11 @@ class B2Kstll:
         # Make sure params exist
         params = get_params(param_names)
         pdf = pdf_class(self.obs, **params)
-        if dataset:
-            dataset = data_transform(dataset, self.obs.obs)
-        return pdf, dataset
+        return pdf
+
+    def fold_dataset(self, name, dataset):
+        *_, data_transform = self.FOLDS[name]
+        return data_transform(dataset, self.obs.obs)
 
 
 if __name__ == "__main__":
