@@ -24,14 +24,10 @@ ztypes = zfit.settings.ztypes
 
 # The PDFs
 
-class P5pPDF(zfit.pdf.BasePDF):
-    """P5prime observable from Bd -> Kst ll (l=e,mu)"""
+class P5pPDF(zfit.pdf.ZPDF):
+    """P5prime observable from Bd -> Kst ll (l=e,mu).
 
-    def __init__(self, FL: ztyping.ParamTypeInput, AT2: ztyping.ParamTypeInput,
-                 P5p: ztyping.ParamTypeInput, obs: ztyping.ObsTypeInput,
-                 name: str = "P5pPDF", dtype: Type = ztypes.float):
-
-        """Angular distribution obtained from a fold tecnhique,
+    Angular distribution obtained from a fold tecnhique,
         i.e. the valid of the angles is given for
             - phi: [0, pi]
             - theta_K: [0, pi]
@@ -48,11 +44,9 @@ class P5pPDF(zfit.pdf.BasePDF):
             name (str):
             dtype (tf.DType):
 
-        """
-        parameters = {'FL': FL,
-                      'AT2': AT2,
-                      'P5p': P5p}
-        super().__init__(obs=obs, dtype=dtype, name=name, parameters=parameters)
+    """
+    _PARAMS = ['FL', 'AT2', 'P5p']
+    _N_OBS = 3
 
     def _unnormalized_pdf(self, x):
         FL = self.parameters['FL']
@@ -128,7 +122,7 @@ class B2Kstll:
 
         # Make sure params exist
         params = get_params(param_names)
-        pdf = pdf_class(self.obs, **params)
+        pdf = pdf_class(obs=self.obs, **params)
         return pdf
 
     def fold_dataset(self, name, dataset):
@@ -140,6 +134,7 @@ if __name__ == "__main__":
     costheta_l = zfit.Space("costhetal", limits=(-1.0, 1.0))
     costheta_k = zfit.Space("costhetaK", limits=(-1.0, 1.0))
     phi = zfit.Space("phi", limits=(-pi, pi))
-    B2Kstll(costheta_l, costheta_k, phi)
+    decay = B2Kstll(costheta_l, costheta_k, phi)
+    pdf = decay.get_folded_pdf('P5p')
 
 # EOFs
