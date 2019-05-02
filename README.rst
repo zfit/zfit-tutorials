@@ -28,3 +28,8 @@ Building models out of other models using sums, products and more is an essentia
 
 Being able to build a custom model simply is an essential feature of zfit. This tutorial introduces the two main ways of doing it, a simpler and a more advanced, more flexible way.
 
+62 Multidimensional custom PDF
+------------------------------
+
+Building a pdf in multiple dimensions and registering an analytic integral
+
