@@ -11,7 +11,7 @@ Try them directly with
 00 Lazy Evaluation, Graphs and TensorFlow
 -----------------------------------------
 
-An introduction to the declarative programing paradigm and graphs using pure python and TensorFlow..
+An introduction to the declarative programing paradigm and graphs using pure python and TensorFlow.
 
 10 Introduction to zfit
 -----------------------
@@ -31,5 +31,5 @@ Being able to build a custom model simply is an essential feature of zfit. This 
 62 Multidimensional custom PDF
 ------------------------------
 
-Building a pdf in multiple dimensions and registering an analytic integral
+Building a pdf in multiple dimensions and registering an analytic integral.
 
