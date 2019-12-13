@@ -1,6 +1,5 @@
-zfit<0.4
+zfit>=0.4
 matplotlib
 numpy
 pandas
 seaborn
-tensorflow<2
