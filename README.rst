@@ -1,4 +1,5 @@
 
+==============
 zfit-tutorials
 ==============
 Tutorials for the zfit project
@@ -8,10 +9,8 @@ Try them directly with
 .. image:: https://mybinder.org/badge.svg
    :target: https://mybinder.org/v2/gh/zfit/zfit-tutorials/master
 
-00 Lazy Evaluation, Graphs and TensorFlow
------------------------------------------
-
-An introduction to the declarative programing paradigm and graphs using pure python and TensorFlow.
+zfit
+====
 
 10 Introduction to zfit
 -----------------------
@@ -33,3 +32,11 @@ Being able to build a custom model simply is an essential feature of zfit. This 
 
 Building a pdf in multiple dimensions and registering an analytic integral.
 
+
+Experimental
+============
+
+00 Lazy Evaluation, Graphs and TensorFlow
+-----------------------------------------
+
+An introduction to the declarative programing paradigm and graphs using pure python and TensorFlow.
