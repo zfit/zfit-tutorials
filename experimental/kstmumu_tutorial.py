@@ -146,7 +146,6 @@ lambda_rare.set_value(-0.003)
 with comb_bkg_rare.set_norm_range(obs_bkg):
     right_tale_loss = zfit.loss.UnbinnedNLL(comb_bkg_rare, right_tale_data_rare)
     minimizer = zfit.minimize.Minuit(verbosity=7)
-    minimizer._use_tfgrad = False
     result_right_tale = minimizer.minimize(right_tale_loss)
 
 # --------------------------------------------------
