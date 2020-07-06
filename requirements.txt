@@ -1,4 +1,4 @@
-zfit>=0.4
+zfit>=0.5
 matplotlib
 numpy
 pandas
