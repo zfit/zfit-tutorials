@@ -76,7 +76,12 @@ TensorFlow
 
 Tutorials about TensorFlow, the zfit backend, itself
 
-00 Lazy Evaluation, Graphs and TensorFlow
+Lazy Evaluation, Graphs and TensorFlow
 +++++++++++++++++++++++++++++++++++++++++++
 
 An introduction to the declarative programing paradigm and graphs using pure python and TensorFlow.
+
+HPC with TensorFlow
+++++++++++++++++++++
+
+Introduction to TensorFlow from a HPC perspective with explanations of the graph and comparison to other frameworks such as Numpy and Numba.
