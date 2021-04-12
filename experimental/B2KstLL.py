@@ -13,8 +13,8 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 import zfit
+from zfit import z
 
-ztf = zfit.ztf
 ztyping = zfit.util.ztyping
 ztypes = zfit.settings.ztypes
 
@@ -47,7 +47,7 @@ class P4pPDF(zfit.pdf.ZPDF):
         FL = self.parameters['FL']
         AT2 = self.parameters['AT2']
         P4p = self.parameters['P4p']
-        costheta_k, costheta_l, phi = ztf.unstack_x(x)
+        costheta_k, costheta_l, phi = z.unstack_x(x)
 
         sintheta_k = tf.sqrt(1.0 - costheta_k * costheta_k)
         sintheta_l = tf.sqrt(1.0 - costheta_l * costheta_l)
@@ -95,7 +95,7 @@ class P5pPDF(zfit.pdf.ZPDF):
         FL = self.parameters['FL']
         AT2 = self.parameters['AT2']
         P5p = self.parameters['P5p']
-        costheta_k, costheta_l, phi = ztf.unstack_x(x)
+        costheta_k, costheta_l, phi = z.unstack_x(x)
 
         sintheta_k = tf.sqrt(1.0 - costheta_k * costheta_k)
         sintheta_l = tf.sqrt(1.0 - costheta_l * costheta_l)
@@ -142,7 +142,7 @@ class P6pPDF(zfit.pdf.ZPDF):
         FL = self.parameters['FL']
         AT2 = self.parameters['AT2']
         P6p = self.parameters['P6p']
-        costheta_k, costheta_l, phi = ztf.unstack_x(x)
+        costheta_k, costheta_l, phi = z.unstack_x(x)
 
         sintheta_k = tf.sqrt(1.0 - costheta_k * costheta_k)
         sintheta_l = tf.sqrt(1.0 - costheta_l * costheta_l)
@@ -189,7 +189,7 @@ class P8pPDF(zfit.pdf.ZPDF):
         FL = self.parameters['FL']
         AT2 = self.parameters['AT2']
         P8p = self.parameters['P8p']
-        costheta_k, costheta_l, phi = ztf.unstack_x(x)
+        costheta_k, costheta_l, phi = z.unstack_x(x)
 
         sintheta_k = tf.sqrt(1.0 - costheta_k * costheta_k)
         sintheta_l = tf.sqrt(1.0 - costheta_l * costheta_l)
