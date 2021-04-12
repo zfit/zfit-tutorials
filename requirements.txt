@@ -1,8 +1,8 @@
-zfit>=0.5
+hepunits
 matplotlib
+mplhep
 numpy
 pandas
-seaborn
-mplhep
 particle
-hepunits
+seaborn
+zfit>=0.6

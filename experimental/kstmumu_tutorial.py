@@ -1,5 +1,5 @@
-"""Tutorial skeleton for generation and fit, including simultaneous, of B->K*mumu with
-determination of the significance.
+"""Tutorial skeleton for generation and fit, including simultaneous, of B->K*mumu with determination of the
+significance.
 
 @author: Jonas Eschle
 @email: Jonas.Eschle@cern.ch
@@ -243,7 +243,7 @@ def plot_pdf_data(data, model, title, n_bins=40):
     plt.legend()
 
 
-plot_pdf_data(data=rare_data, model=model_rare, title='before fitting: $B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$')
+plot_pdf_data(data=rare_data, model=model_rare, title=r'before fitting: $B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$')
 plt.show()
 
 # create a loss: the minimum of it well-defines the solution to our problem
@@ -251,7 +251,7 @@ ext_rare_nll = zfit.loss.ExtendedUnbinnedNLL(model_rare, rare_data)
 
 result_rare = minimizer.minimize(ext_rare_nll)
 # we could also specify the params explicitly; now all floating are used
-plot_pdf_data(data=rare_data, model=model_rare, title='after rare fitting: $B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$')
+plot_pdf_data(data=rare_data, model=model_rare, title=r'after rare fitting: $B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$')
 plt.show()
 # all the parameters are set to the minimum of the fit. To store the fit information, we can
 # use the FitResult that is returned. It contains e.g. information about the parameter
@@ -402,8 +402,8 @@ simultaneous_loss = ext_reso_nll + ext_rare_nll
 
 result_simult = minimizer.minimize(simultaneous_loss)
 
-plot_pdf_data(data=rare_data, model=model_rare, title='$B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$')
-plot_pdf_data(data=reso_data, model=model_reso, title='$B^0 -> K^{*} (-> K^+ \pi^-) J/\psi (-> \mu^+ \mu^-)$')
+plot_pdf_data(data=rare_data, model=model_rare, title=r'$B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$')
+plot_pdf_data(data=reso_data, model=model_reso, title=r'$B^0 -> K^{*} (-> K^+ \pi^-) J/\psi (-> \mu^+ \mu^-)$')
 plt.show()
 
 # Hesse is not yet supported with weights

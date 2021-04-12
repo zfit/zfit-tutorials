@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # =============================================================================
 # @file   B2KstLL.py
 # @author Albert Puig (albert.puig@cern.ch)
@@ -8,13 +7,11 @@
 """B -> K*ll angular distribution in zfit."""
 
 from math import pi
-
 from typing import Type
 
-import tensorflow as tf
 import numpy as np
 import pandas as pd
-
+import tensorflow as tf
 import zfit
 
 ztf = zfit.ztf
@@ -42,7 +39,6 @@ class P4pPDF(zfit.pdf.ZPDF):
             obs (`zfit.Space`):
             name (str):
             dtype (tf.DType):
-
     """
     _PARAMS = ['FL', 'AT2', 'P4p']
     _N_OBS = 3
@@ -91,7 +87,6 @@ class P5pPDF(zfit.pdf.ZPDF):
             obs (`zfit.Space`):
             name (str):
             dtype (tf.DType):
-
     """
     _PARAMS = ['FL', 'AT2', 'P5p']
     _N_OBS = 3
@@ -139,7 +134,6 @@ class P6pPDF(zfit.pdf.ZPDF):
             obs (`zfit.Space`):
             name (str):
             dtype (tf.DType):
-
     """
     _PARAMS = ['FL', 'AT2', 'P6p']
     _N_OBS = 3
@@ -187,7 +181,6 @@ class P8pPDF(zfit.pdf.ZPDF):
             obs (`zfit.Space`):
             name (str):
             dtype (tf.DType):
-
     """
     _PARAMS = ['FL', 'AT2', 'P8p']
     _N_OBS = 3
@@ -225,7 +218,7 @@ def fold_P4p(data, costheta_k, costheta_l, phi):
     data[f'{phi}_P4p'] = np.where(data[phi] < 0,
                                  -data[phi],
                                  data[phi])
-    data[f'{phi}_P4p'] = np.where(theta_l > 0.5*pi, 
+    data[f'{phi}_P4p'] = np.where(theta_l > 0.5*pi,
                                  pi - data[f'{phi}_P4p'],
                                  data[f'{phi}_P4p'])
     data[f'{costheta_l}_P4p'] = np.where(theta_l > 0.5*pi,
@@ -266,7 +259,7 @@ def fold_P6p(data, costheta_k, costheta_l, phi):
     data[f'{phi}_P6p'] = np.where(data[phi] > 0.5*pi,
                                  pi - data[phi],
                                  data[phi])
-    data[f'{phi}_P6p'] = np.where(data[f'{phi}_P6p'] < - 0.5*pi, 
+    data[f'{phi}_P6p'] = np.where(data[f'{phi}_P6p'] < - 0.5*pi,
                                  - pi - data[f'{phi}_P6p'],
                                  data[f'{phi}_P6p'])
     data[f'{costheta_l}_P6p'] = np.where(theta_l > 0.5*pi,
@@ -285,14 +278,14 @@ def fold_P8p(data, costheta_k, costheta_l, phi):
     theta_k = np.acos(data[costheta_k])
     theta_l = np.acos(data[costheta_l])
 
-    data[f'{costheta_k}_P8p'] = np.where(theta_l > 0.5*pi, 
+    data[f'{costheta_k}_P8p'] = np.where(theta_l > 0.5*pi,
                                 np.cos(pi - theta_k),
                                 data[costheta_k])
 
     data[f'{phi}_P8p'] = np.where(data[phi] > 0.5*pi,
                                  pi - data[phi],
                                  data[phi])
-    data[f'{phi}_P8p'] = np.where(data[f'{phi}_P8p'] < - 0.5*pi, 
+    data[f'{phi}_P8p'] = np.where(data[f'{phi}_P8p'] < - 0.5*pi,
                                  - pi - data[f'{phi}_P8p'],
                                  data[f'{phi}_P8p'])
     data[f'{costheta_l}_P8p'] = np.where(theta_l > 0.5*pi,

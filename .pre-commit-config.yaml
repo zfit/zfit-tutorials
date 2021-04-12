@@ -12,7 +12,6 @@ repos:
       - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: requirements-txt-fixer
-      - id: trailing-whitespace
       - id: detect-private-key
       #          - id: name-tests-test
       - id: fix-byte-order-marker
@@ -43,10 +42,6 @@ repos:
       #          - id: rst-backticks
       - id: rst-directive-colons
 
-  #    - repo: https://github.com/pycqa/pydocstyle
-  #      rev: 5.1.1
-  #      hooks:
-  #          - id: pydocstyle
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.8.0
@@ -70,10 +65,11 @@ repos:
     hooks:
       - id: nbqa-isort
         additional_dependencies: [ isort==5.6.4 ]
+        args: [ --nbqa-mutate ]
 
       - id: nbqa-pyupgrade
         additional_dependencies: [ pyupgrade==2.7.4 ]
-        args: [ --py36-plus ]
+        args: [ --py36-plus, --nbqa-mutate]
 
   - repo: https://github.com/mgedmin/check-manifest
     rev: '0.46'
