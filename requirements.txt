@@ -1,8 +1,11 @@
+hepstats
 hepunits
 matplotlib
 mplhep
+numba
 numpy
 pandas
 particle
+progressbar2
 seaborn
 zfit>=0.6
