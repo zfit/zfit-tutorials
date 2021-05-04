@@ -52,19 +52,18 @@ def kstar_mass(min_mass, max_mass, n_events):
 
     kstar_mass = tf.broadcast_to(kstar_mass_cast, shape=(n_events,))
     if KSTARZ_WIDTH > 0:
-        kstar_mass = tfp.distributions.TruncatedNormal(loc=kstar_mass,
-                                                       scale=kstar_width_cast,
-                                                       low=min_mass,
-                                                       high=max_mass).sample()
+        kstar_mass = tfp.distributions.TruncatedNormal(
+            loc=kstar_mass, scale=kstar_width_cast, low=min_mass, high=max_mass
+        ).sample()
     return kstar_mass
 
 
-kstar = GenParticle('K*0', mass=kstar_mass).set_children(GenParticle('K+', mass=KAON_MASS),
-                                                         GenParticle('pi-', mass=PION_MASS))
-bz = GenParticle('B0', B0_MASS).set_children(kstar,
-                                             GenParticle('mu+', mass=MU_MASS),
-                                             GenParticle('mu-', mass=MU_MASS)
-                                             )
+kstar = GenParticle("K*0", mass=kstar_mass).set_children(
+    GenParticle("K+", mass=KAON_MASS), GenParticle("pi-", mass=PION_MASS)
+)
+bz = GenParticle("B0", B0_MASS).set_children(
+    kstar, GenParticle("mu+", mass=MU_MASS), GenParticle("mu-", mass=MU_MASS)
+)
 weights, particles = bz.generate(n_sig_rare)
 weights = weights / np.average(weights)
 
@@ -81,16 +80,18 @@ def invariant_mass(four_momenta):
 
 
 smeared_momenta = {}
-daugther_particles = ['K+', 'pi-', 'mu+', 'mu-']
+daugther_particles = ["K+", "pi-", "mu+", "mu-"]
 for particle in daugther_particles:
-    smeared_momenta[particle] = smear_momenta(particles[particle], smearing=rare_smearing)
+    smeared_momenta[particle] = smear_momenta(
+        particles[particle], smearing=rare_smearing
+    )
 
-smeared_momenta['K*0'] = smeared_momenta['K+'] + smeared_momenta['pi-']
-smeared_momenta['Jpsi'] = smeared_momenta['mu+'] + smeared_momenta['mu-']
-smeared_momenta['B0'] = smeared_momenta['K*0'] + smeared_momenta['Jpsi']
+smeared_momenta["K*0"] = smeared_momenta["K+"] + smeared_momenta["pi-"]
+smeared_momenta["Jpsi"] = smeared_momenta["mu+"] + smeared_momenta["mu-"]
+smeared_momenta["B0"] = smeared_momenta["K*0"] + smeared_momenta["Jpsi"]
 
-b_mass_rare = invariant_mass(smeared_momenta['B0'])
-q2 = invariant_mass(smeared_momenta['Jpsi'])
+b_mass_rare = invariant_mass(smeared_momenta["B0"])
+q2 = invariant_mass(smeared_momenta["Jpsi"])
 
 # plot the b mass with the weights. It is basically the same as without weights.
 plt.figure()
@@ -126,18 +127,24 @@ import zfit
 
 # TODO @Eduardo: maybe adjust the range?
 upper_limit = 5600
-obs = zfit.Space('Bmass', (5000, upper_limit))  # for whole range
-obs_bkg = zfit.Space('Bmass', (5400, upper_limit))  # to pre-fit the exponential
+obs = zfit.Space("Bmass", (5000, upper_limit))  # for whole range
+obs_bkg = zfit.Space("Bmass", (5400, upper_limit))  # to pre-fit the exponential
 
 # Parameters are specified:  (name (unique), initial, lower, upper) whereas lower, upper are optional
-lambda_rare = zfit.Parameter('lambda_rare', -0.002, -0.01, -0.0001, step_size=0.001)  # floating, also without limits
+lambda_rare = zfit.Parameter(
+    "lambda_rare", -0.002, -0.01, -0.0001, step_size=0.001
+)  # floating, also without limits
 comb_bkg_rare = zfit.pdf.Exponential(lambda_rare, obs=obs)
 
 # create some bkg data
-comb_bkg_rare_sample = comb_bkg_rare.sample(n=n_bkg_rare)  # sampled within the limits of `obs`
+comb_bkg_rare_sample = comb_bkg_rare.sample(
+    n=n_bkg_rare
+)  # sampled within the limits of `obs`
 
 # to improve our fit, we can prefit the rightside
-right_tale_data_rare = zfit.Data.from_numpy(obs=obs_bkg, array=comb_bkg_rare_sample.value())
+right_tale_data_rare = zfit.Data.from_numpy(
+    obs=obs_bkg, array=comb_bkg_rare_sample.value()
+)
 
 # set the value of lambda to smth different than we sampled from (for the fit afterwards)
 lambda_rare.set_value(-0.003)
@@ -154,7 +161,9 @@ with comb_bkg_rare.set_norm_range(obs_bkg):
 
 # now create the data for the rare fit
 rare_data_np = np.concatenate([b_mass_rare, comb_bkg_rare_sample[:, 0]], axis=0)
-rare_weights_np = np.concatenate([weights, np.ones_like(comb_bkg_rare_sample[:, 0])], axis=0)
+rare_weights_np = np.concatenate(
+    [weights, np.ones_like(comb_bkg_rare_sample[:, 0])], axis=0
+)
 # TODO @Eduardo, we could do some data preprocessing here (e.g. apply a cut to q2, which we actually
 # need to have "no Jpsi" in there. This can be done with pandas and then loaded into zfit
 
@@ -180,33 +189,40 @@ plt.hist(rare_data_np, weights=rare_weights_np, bins=40)
 comb_bkg_rare.set_norm_range(obs)
 
 # parameters for the model
-mu = zfit.Parameter('mu', 5270, 5200, 5350)
-sigma = zfit.Parameter('sigma', 22, 0, 100)
+mu = zfit.Parameter("mu", 5270, 5200, 5350)
+sigma = zfit.Parameter("sigma", 22, 0, 100)
 
 # we could also use a smple model here
 # signal_rare = zfit.pdf.Gauss(mu=mu, sigma=sigma, obs=obs)
 
 # We will use a double crystall ball
-alphal_rare = zfit.Parameter('alpha left rare', -0.3, -5, 0)
-nl_rare = zfit.Parameter('n left rare', 0.3, 0, 10)
-alphar_rare = zfit.Parameter('alpha right rare', 1, 0, 5)
-nr_rare = zfit.Parameter('n right rare', 2.8, 0, 10)
-frac_dcb_rare = zfit.Parameter('frac dcb', 0.3, 0.1, 0.9)
+alphal_rare = zfit.Parameter("alpha left rare", -0.3, -5, 0)
+nl_rare = zfit.Parameter("n left rare", 0.3, 0, 10)
+alphar_rare = zfit.Parameter("alpha right rare", 1, 0, 5)
+nr_rare = zfit.Parameter("n right rare", 2.8, 0, 10)
+frac_dcb_rare = zfit.Parameter("frac dcb", 0.3, 0.1, 0.9)
 
-left_cb_rare = zfit.pdf.CrystalBall(obs=obs,
-                                    mu=mu, sigma=sigma,
-                                    alpha=alphal_rare, n=nl_rare,
-                                    )
-right_cb_rare = zfit.pdf.CrystalBall(obs=obs,
-                                     mu=mu, sigma=sigma,
-                                     alpha=alphar_rare, n=nr_rare,
-                                     )
+left_cb_rare = zfit.pdf.CrystalBall(
+    obs=obs,
+    mu=mu,
+    sigma=sigma,
+    alpha=alphal_rare,
+    n=nl_rare,
+)
+right_cb_rare = zfit.pdf.CrystalBall(
+    obs=obs,
+    mu=mu,
+    sigma=sigma,
+    alpha=alphar_rare,
+    n=nr_rare,
+)
 signal_rare = zfit.pdf.SumPDF([left_cb_rare, right_cb_rare], fracs=frac_dcb_rare)
 
 # now create the yields and the extended pdfs
-rare_sig_yield = zfit.Parameter('rare_sig_yield', n_sig_rare + 30,
-                                step_size=3)  # step size: default is small, use appropriate
-rare_bkg_yield = zfit.Parameter('rare_bkg_yield', n_bkg_rare - 40, step_size=1)
+rare_sig_yield = zfit.Parameter(
+    "rare_sig_yield", n_sig_rare + 30, step_size=3
+)  # step size: default is small, use appropriate
+rare_bkg_yield = zfit.Parameter("rare_bkg_yield", n_bkg_rare - 40, step_size=1)
 extended_sig_rare = signal_rare.create_extended(rare_sig_yield)
 extended_bkg_rare = comb_bkg_rare.create_extended(rare_bkg_yield)
 model_rare = zfit.pdf.SumPDF([extended_bkg_rare, extended_sig_rare])
@@ -225,25 +241,48 @@ def plot_pdf_data(data, model, title, n_bins=40):
 
     # plot the data
     data_np = data[:, 0]
-    plt.hist(data_np,
-             # color=color,
-             bins=n_bins, histtype="stepfilled", alpha=0.1)
-    plt.hist(data_np,
-             # color=color,
-             bins=n_bins, histtype="step")
+    plt.hist(
+        data_np,
+        # color=color,
+        bins=n_bins,
+        histtype="stepfilled",
+        alpha=0.1,
+    )
+    plt.hist(
+        data_np,
+        # color=color,
+        bins=n_bins,
+        histtype="step",
+    )
     # plot the pdfs
     y = model.pdf(x).numpy()
     y_sig = (model.pdfs[0].pdf(x) * model.fracs[0]).numpy()  # notice the frac!
     y_bkg = (model.pdfs[1].pdf(x) * model.fracs[1]).numpy()  # notice the frac!
 
     plt.plot(x, y * plot_scaling, label="Sum - Model", linewidth=linewidth * 2)
-    plt.plot(x, y_sig * plot_scaling, '--', label=f"{model.pdfs[0].name} - Signal", linewidth=linewidth)
-    plt.plot(x, y_bkg * plot_scaling, '--', label=f"{model.pdfs[1].name} - Background", linewidth=linewidth)
+    plt.plot(
+        x,
+        y_sig * plot_scaling,
+        "--",
+        label=f"{model.pdfs[0].name} - Signal",
+        linewidth=linewidth,
+    )
+    plt.plot(
+        x,
+        y_bkg * plot_scaling,
+        "--",
+        label=f"{model.pdfs[1].name} - Background",
+        linewidth=linewidth,
+    )
     plt.xlabel(space.obs[0])
     plt.legend()
 
 
-plot_pdf_data(data=rare_data, model=model_rare, title=r'before fitting: $B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$')
+plot_pdf_data(
+    data=rare_data,
+    model=model_rare,
+    title=r"before fitting: $B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$",
+)
 plt.show()
 
 # create a loss: the minimum of it well-defines the solution to our problem
@@ -251,7 +290,11 @@ ext_rare_nll = zfit.loss.ExtendedUnbinnedNLL(model_rare, rare_data)
 
 result_rare = minimizer.minimize(ext_rare_nll)
 # we could also specify the params explicitly; now all floating are used
-plot_pdf_data(data=rare_data, model=model_rare, title=r'after rare fitting: $B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$')
+plot_pdf_data(
+    data=rare_data,
+    model=model_rare,
+    title=r"after rare fitting: $B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$",
+)
 plt.show()
 # all the parameters are set to the minimum of the fit. To store the fit information, we can
 # use the FitResult that is returned. It contains e.g. information about the parameter
@@ -270,11 +313,12 @@ pprint(result_rare.params)
 # the params can be accesssed using the parameter objects
 mu_rare_fit = result_rare.params[mu]
 # they contain information about the result such as value etc
-print(f"Mu value of rare fit: {mu_rare_fit['value']} "
-      f"+ {mu_rare_fit['minuit_minos']['upper']} "
-      f"- {mu_rare_fit['minuit_minos']['upper']}"
-      # f" (symmetric Hesse error: {mu_rare_fit['minuit_hesse']['error']})"
-      )
+print(
+    f"Mu value of rare fit: {mu_rare_fit['value']} "
+    f"+ {mu_rare_fit['minuit_minos']['upper']} "
+    f"- {mu_rare_fit['minuit_minos']['upper']}"
+    # f" (symmetric Hesse error: {mu_rare_fit['minuit_hesse']['error']})"
+)
 
 # *************************************************
 # PHASESPACE GENERATION OF RESONANT SIGNAL
@@ -283,26 +327,29 @@ print(f"Mu value of rare fit: {mu_rare_fit['value']} "
 # also fit the resonant mode and share certain parameters
 
 # create the resonant decay
-bz = GenParticle('B0', B0_MASS).set_children(kstar,
-                                             GenParticle('Jpsi', mass=JPSI_MASS).set_children(
-                                                 GenParticle('mu+', mass=MU_MASS),
-                                                 GenParticle('mu-', mass=MU_MASS)
-                                             ))
+bz = GenParticle("B0", B0_MASS).set_children(
+    kstar,
+    GenParticle("Jpsi", mass=JPSI_MASS).set_children(
+        GenParticle("mu+", mass=MU_MASS), GenParticle("mu-", mass=MU_MASS)
+    ),
+)
 
 weights_reso, particles_reso = bz.generate(n_sig_reso)
 weights_reso /= np.average(weights_reso)
 
 smeared_momenta_reso = {}
-daugther_particles_reso = ['K+', 'pi-', 'mu+', 'mu-']
+daugther_particles_reso = ["K+", "pi-", "mu+", "mu-"]
 for particle in daugther_particles_reso:
-    smeared_momenta_reso[particle] = smear_momenta(particles_reso[particle], smearing=reso_smearing)
+    smeared_momenta_reso[particle] = smear_momenta(
+        particles_reso[particle], smearing=reso_smearing
+    )
 
-smeared_momenta_reso['K*0'] = smeared_momenta_reso['K+'] + smeared_momenta_reso['pi-']
-smeared_momenta_reso['Jpsi'] = smeared_momenta_reso['mu+'] + smeared_momenta_reso['mu-']
-smeared_momenta_reso['B0'] = smeared_momenta_reso['K*0'] + smeared_momenta_reso['Jpsi']
+smeared_momenta_reso["K*0"] = smeared_momenta_reso["K+"] + smeared_momenta_reso["pi-"]
+smeared_momenta_reso["Jpsi"] = smeared_momenta_reso["mu+"] + smeared_momenta_reso["mu-"]
+smeared_momenta_reso["B0"] = smeared_momenta_reso["K*0"] + smeared_momenta_reso["Jpsi"]
 
-b_mass_reso = invariant_mass(smeared_momenta_reso['B0'])
-q2_reso = invariant_mass(smeared_momenta_reso['Jpsi'])
+b_mass_reso = invariant_mass(smeared_momenta_reso["B0"])
+q2_reso = invariant_mass(smeared_momenta_reso["Jpsi"])
 
 # plot the q2
 plt.figure()
@@ -315,17 +362,23 @@ plt.legend()
 # COMBINATORIAL BACKGROUND RESO
 # ------------------------------------------------
 
-lambda_reso = zfit.Parameter('lambda_reso', -0.002, -0.01, 0.0001)  # floating, also without limits
+lambda_reso = zfit.Parameter(
+    "lambda_reso", -0.002, -0.01, 0.0001
+)  # floating, also without limits
 comb_bkg_reso_pdf = zfit.pdf.Exponential(lambda_reso, obs=obs)
 
 # create some more bkg data
-comb_bkg_reso_sample = comb_bkg_reso_pdf.sample(n=n_bkg_reso)  # sampled within the limits of `obs`
+comb_bkg_reso_sample = comb_bkg_reso_pdf.sample(
+    n=n_bkg_reso
+)  # sampled within the limits of `obs`
 
 # set the value of lambda to smth different then we sampled from (for the fit afterwards)
 lambda_reso.set_value(-0.01)
 
 reso_data_np = np.concatenate([b_mass_reso, comb_bkg_reso_sample[:, 0]], axis=0)
-reso_weights_np = np.concatenate([weights_reso, np.ones_like(comb_bkg_reso_sample[:, 0])], axis=0)
+reso_weights_np = np.concatenate(
+    [weights_reso, np.ones_like(comb_bkg_reso_sample[:, 0])], axis=0
+)
 
 # TODO @eduardo: maybe remove plot, just for data visualization example?
 plt.figure()
@@ -343,16 +396,18 @@ reso_data = zfit.Data.from_numpy(obs=obs, array=reso_data_np)
 # we can share parameters directly or create composed parameters. Here we have a
 # parameter that scales the sigma from the rare fit
 
-sigma_scaling = zfit.Parameter('sigma_scaling', 0.9, 0.1, 10)
+sigma_scaling = zfit.Parameter("sigma_scaling", 0.9, 0.1, 10)
 
 
 def sigma_scaled_fn():
     return sigma * sigma_scaling  # this can be an arbitrary function
 
 
-sigma_scaled = zfit.ComposedParameter('sigma scaled', sigma_scaled_fn,
-                                      dependents=sigma  # the objects used inside the func
-                                      )
+sigma_scaled = zfit.ComposedParameter(
+    "sigma scaled",
+    sigma_scaled_fn,
+    dependents=sigma,  # the objects used inside the func
+)
 
 # we could also make the free parameters, not shared
 # alphal_reso = zfit.Parameter('alpha left reso', -0.7, -5, 0)
@@ -367,23 +422,32 @@ nr_reso = nr_rare
 
 # frac_dcb_reso = zfit.Parameter('frac dcb_reso', 0.5, 0.01, 0.99)
 frac_dcb_reso = frac_dcb_rare
-left_cb_reso = zfit.pdf.CrystalBall(obs=obs,
-                                    mu=mu, sigma=sigma_scaled,
-                                    alpha=alphal_reso, n=nl_reso,
-                                    )
-right_cb_reso = zfit.pdf.CrystalBall(obs=obs,
-                                     mu=mu, sigma=sigma_scaled,
-                                     alpha=alphar_reso, n=nr_reso,
-                                     )
+left_cb_reso = zfit.pdf.CrystalBall(
+    obs=obs,
+    mu=mu,
+    sigma=sigma_scaled,
+    alpha=alphal_reso,
+    n=nl_reso,
+)
+right_cb_reso = zfit.pdf.CrystalBall(
+    obs=obs,
+    mu=mu,
+    sigma=sigma_scaled,
+    alpha=alphar_reso,
+    n=nr_reso,
+)
 signal_reso = zfit.pdf.SumPDF([left_cb_reso, right_cb_reso], fracs=frac_dcb_reso)
 
 # or we can use a simpler shape
 # signal_reso = zfit.pdf.Gauss(mu=mu,  # using the same mu as above means it's shared
 #                              sigma=sigma_scaled, obs=obs)
 
-reso_sig_yield = zfit.Parameter('reso_sig_yield', n_sig_reso - 100, 0, n_sig_reso * 3,
-                                step_size=1)  # step size: default is small, use appropriate
-reso_bkg_yield = zfit.Parameter('reso_bkg_yield', n_bkg_reso + 70, 0, n_bkg_reso * 3, step_size=1)
+reso_sig_yield = zfit.Parameter(
+    "reso_sig_yield", n_sig_reso - 100, 0, n_sig_reso * 3, step_size=1
+)  # step size: default is small, use appropriate
+reso_bkg_yield = zfit.Parameter(
+    "reso_bkg_yield", n_bkg_reso + 70, 0, n_bkg_reso * 3, step_size=1
+)
 extended_sig_reso = signal_reso.create_extended(reso_sig_yield)
 extended_bkg_reso = comb_bkg_reso_pdf.create_extended(reso_bkg_yield)
 model_reso = zfit.pdf.SumPDF([extended_bkg_reso, extended_sig_reso])
@@ -402,13 +466,21 @@ simultaneous_loss = ext_reso_nll + ext_rare_nll
 
 result_simult = minimizer.minimize(simultaneous_loss)
 
-plot_pdf_data(data=rare_data, model=model_rare, title=r'$B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$')
-plot_pdf_data(data=reso_data, model=model_reso, title=r'$B^0 -> K^{*} (-> K^+ \pi^-) J/\psi (-> \mu^+ \mu^-)$')
+plot_pdf_data(
+    data=rare_data, model=model_rare, title=r"$B^0 -> K^{*} (-> K^+ \pi^-) \mu^+ \mu^-$"
+)
+plot_pdf_data(
+    data=reso_data,
+    model=model_reso,
+    title=r"$B^0 -> K^{*} (-> K^+ \pi^-) J/\psi (-> \mu^+ \mu^-)$",
+)
 plt.show()
 
 # Hesse is not yet supported with weights
 # result_simult.hesse()  # error calculation using hesse
-errors = result_simult.error([mu, rare_sig_yield, reso_sig_yield])  # error calculation using minos, just for a few
+errors = result_simult.error(
+    [mu, rare_sig_yield, reso_sig_yield]
+)  # error calculation using minos, just for a few
 # parameters as it is quite expensive
 pprint(errors)
 
@@ -425,4 +497,4 @@ calculator = AsymptoticCalculator(simultaneous_loss, minimizer)
 poinull = POI(rare_sig_yield, 0)
 discovery_test = Discovery(calculator, poinull)
 pnull, significance = discovery_test.result()
-print(f'pnull: {pnull} with significance {significance}')
+print(f"pnull: {pnull} with significance {significance}")
