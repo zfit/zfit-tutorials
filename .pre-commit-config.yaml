@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v4.0.1
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
@@ -47,7 +47,7 @@ repos:
       - id: isort
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.14.0
+    rev: v2.18.2
     hooks:
       - id: pyupgrade
         args: [ --py37-plus ]
@@ -59,7 +59,7 @@ repos:
 
   # Notebook formatting
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 0.8.0
+    rev: 0.9.0
     hooks:
       - id: nbqa-isort
         additional_dependencies: [ isort==5.6.4 ]
@@ -76,13 +76,13 @@ repos:
         stages: [ manual ]
 #   TODO(py37): add the following once 3.6 is gone. Changes the Type hints.
   - repo: https://github.com/sondrelg/pep585-upgrade
-    rev: '5f7033a0d0174c65105b041500060b993c1bc211'  # Use the sha / tag you want to point at
+    rev: 'bcc3d077ee46c94bc1dac5f5274e2fb43de570e9'  # Use the sha / tag you want to point at
     hooks:
       - id: upgrade-type-hints
         args: [ '--futures=true' ]
 
-  - repo: https://github.com/ambv/black
-    rev: 21.4b2
+  - repo: https://github.com/psf/black
+    rev: 21.5b1
     hooks:
       - id: black
         language: python
