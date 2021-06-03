@@ -1,6 +1,8 @@
 hepstats
 hepunits
+hist
 matplotlib
+mplhep
 mplhep
 numba
 numpy

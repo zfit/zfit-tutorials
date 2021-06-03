@@ -1,0 +1,21 @@
+name: zfit-tutorials
+channels:
+  - conda-forge
+dependencies:
+  - hepunits
+  - matplotlib
+  - mplhep
+  - numpy
+  - numba
+  - pandas
+  - particle
+  - pip
+  - scipy
+  - xgboost
+  - progressbar2
+  - mplhep
+  - hist
+  - pip:
+    - zfit >=0.6.4,<0.8
+    - hepstats
+    - formulate
