@@ -40,7 +40,7 @@ repos:
       - id: isort
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.19.0
+    rev: v2.19.1
     hooks:
       - id: pyupgrade
         args: [ --py37-plus ]
@@ -52,7 +52,7 @@ repos:
 
   # Notebook formatting
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 0.10.0
+    rev: 0.11.1
     hooks:
       - id: nbqa-isort
         additional_dependencies: [ isort==5.6.4 ]
@@ -69,7 +69,7 @@ repos:
         stages: [ manual ]
 
   - repo: https://github.com/sondrelg/pep585-upgrade
-    rev: 'bcc3d077ee46c94bc1dac5f5274e2fb43de570e9'  # Use the sha / tag you want to point at
+    rev: 'ab1595ee0aa8823dcda1f0bd95b2c194fcd5362b'  # Use the sha / tag you want to point at
     hooks:
       - id: upgrade-type-hints
         args: [ '--futures=true' ]
