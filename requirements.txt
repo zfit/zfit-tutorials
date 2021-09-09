@@ -3,7 +3,6 @@ hepunits
 hist
 matplotlib
 mplhep
-mplhep
 numba
 numpy
 pandas
