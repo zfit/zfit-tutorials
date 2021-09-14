@@ -1,6 +1,7 @@
 hepstats
 hepunits
 hist
+jupyter-book  # docs
 matplotlib
 mplhep
 numba
@@ -8,5 +9,7 @@ numpy
 pandas
 particle
 progressbar2
+
+pydata-sphinx-theme  # docs
 seaborn
 zfit>=0.8,<0.10
