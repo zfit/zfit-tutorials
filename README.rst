@@ -25,7 +25,7 @@ Guides you through zfit with a minimal example
 Introduction
 ++++++++++++
 
-A more extensive introduction that shows the most crucial aspects and possibilities.
+A more extensive introduction that shows the most crucial aspects.
 
 Components
 -----------

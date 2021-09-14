@@ -9,4 +9,4 @@ pandas
 particle
 progressbar2
 seaborn
-zfit>=0.6
+zfit>=0.8,<0.10
