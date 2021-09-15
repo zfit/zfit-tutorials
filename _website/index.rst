@@ -55,10 +55,11 @@ for the zfit project.
 
 
 
+| **Components** focuse on a specific component of zfit. They are rather short and function as a lookup
+| **guides** are more extensive notebooks that go through several aspects of zfit and combine it with hepstats.
+
+
+They can all be launched (rocket button upper right), but you can also launch all of them in
+
 .. image:: https://mybinder.org/badge.svg
    :target: https://mybinder.org/v2/gh/zfit/zfit-tutorials/master
-
-
-**Components** focuse on a specific component of zfit. They are rather short and function as a lookup
-
-**guides** are more extensive notebooks that go through several aspects of zfit and combine it with hepstats.
