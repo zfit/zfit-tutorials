@@ -14,8 +14,8 @@ import shutil
 from pathlib import Path
 
 project = "zfit"
-package = "zfit-tutorials"
-repo_name = "zfit-tutorials"
+package = "tutorials"
+repo_name = "repo tutorials"
 copyright = "2021, zfit"
 author = "zfit"
 
@@ -33,6 +33,8 @@ for folder in ["introduction", "components", "guides", "TensorFlow"]:
         os.symlink(project_dir.joinpath(folder), target, target_is_directory=True)
 
 # -- General configuration ---------------------------------------------------
+
+html_logo = str(project_dir.joinpath("_website", "images", "zfit-logo_400x168.png"))
 source_suffix = {
     ".ipynb": "myst-nb",
     ".md": "myst-nb",
@@ -91,7 +93,7 @@ html_theme_options = {
     },
     "theme_dev_mode": True,
 }
-html_title = "zfit tutorials"
+html_title = "tutorials"
 panels_add_bootstrap_css = False  # wider page width with sphinx-panels
 pygments_style = "sphinx"
 todo_include_todos = False
@@ -105,10 +107,6 @@ primary_domain = "py"
 #     ("py:class", "tensorflow.python.keras.losses.Loss"),
 #     ("py:obj", "Loss"),
 # ]
-
-
-# Settings for autosectionlabel
-autosectionlabel_prefix_document = True
 
 # Settings for copybutton
 copybutton_prompt_is_regexp = True
