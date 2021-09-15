@@ -28,9 +28,13 @@ tutorial_path = Path(project_dir).joinpath("_website", "tutorials")
 tutorial_path.mkdir(exist_ok=True)
 # tutorial_path.mkdir(parents=True, exist_ok=True)
 for folder in ["introduction", "components", "guides", "TensorFlow"]:
-    target = tutorial_path.joinpath(folder)
-    if not target.exists():
-        os.symlink(project_dir.joinpath(folder), target, target_is_directory=True)
+    folderpath = project_dir.joinpath(folder)
+    for target in os.listdir(folderpath):
+        if not target.startswith("_"):
+            targetpath = tutorial_path.joinpath(folder, target)
+            if not targetpath.exists():
+                sourcepath = folderpath.joinpath(target)
+                os.symlink(sourcepath, targetpath)
 
 # -- General configuration ---------------------------------------------------
 
