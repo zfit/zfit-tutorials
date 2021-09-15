@@ -16,6 +16,6 @@ for folder in ["introduction", "components", "guides", "TensorFlow"]:
         source=str(sourcepath),
         destination=str(targetpath),
         sync_source_contents=True,
-        options=["-a"],
+        options=["-a", "-u"],
         verbose=True,
     )
