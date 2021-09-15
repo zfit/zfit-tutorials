@@ -20,8 +20,8 @@ project_dir = Path(__file__).parents[1]
 sys.path.insert(0, str(project_dir))
 
 project = "zfit"
-package = "tutorials"
-repo_name = "repo tutorials"
+package = "zfit-tutorials"
+repo_name = "zfit-tutorials"
 copyright = "2021, zfit"
 author = "zfit"
 
@@ -76,7 +76,7 @@ html_theme = "sphinx_book_theme"
 html_theme_options = {
     "repository_url": f"https://github.com/zfit/{repo_name}",
     "repository_branch": "master",
-    "path_to_docs": "",
+    "path_to_docs": "_website",
     "use_download_button": True,
     "use_edit_page_button": True,
     "use_issues_button": True,
