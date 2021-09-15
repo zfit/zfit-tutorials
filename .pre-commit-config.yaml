@@ -2,14 +2,7 @@ ci:
     autoupdate_schedule: quarterly
 
 repos:
-  - repo: local
-    hooks:
-      - id: jupyter-notebook-rsync
-        name: jupytersync
-        entry: _website/sync_jupyter_notebooks.py
-        language: python
-        always_run: true
-        additional_dependencies: [ sysrsync ]
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:
@@ -90,3 +83,11 @@ repos:
     rev: v1.2.1
     hooks:
       - id: jupyter-notebook-cleanup
+  - repo: local
+    hooks:
+      - id: jupyter-notebook-rsync
+        name: jupytersync
+        entry: _website/sync_jupyter_notebooks.py
+        language: python
+        always_run: true
+        additional_dependencies: [ sysrsync ]
