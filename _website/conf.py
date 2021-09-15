@@ -11,7 +11,13 @@ import os
 
 # -- Project information -----------------------------------------------------
 import shutil
+import sys
 from pathlib import Path
+
+import sysrsync
+
+project_dir = Path(__file__).parents[1]
+sys.path.insert(0, str(project_dir))
 
 project = "zfit"
 package = "tutorials"
@@ -28,13 +34,21 @@ tutorial_path = Path(project_dir).joinpath("_website", "tutorials")
 tutorial_path.mkdir(exist_ok=True)
 # tutorial_path.mkdir(parents=True, exist_ok=True)
 for folder in ["introduction", "components", "guides", "TensorFlow"]:
-    folderpath = project_dir.joinpath(folder)
-    for target in os.listdir(folderpath):
-        if not target.startswith("_"):
-            targetpath = tutorial_path.joinpath(folder, target)
-            if not targetpath.exists():
-                sourcepath = folderpath.joinpath(target)
-                os.symlink(sourcepath, targetpath)
+    sourcepath = project_dir.joinpath(folder)
+    targetpath = tutorial_path.joinpath(folder)
+    sysrsync.run(
+        source=str(sourcepath),
+        destination=str(targetpath),
+        sync_source_contents=True,
+        options=["-a"],
+        verbose=True,
+    )
+    # for target in os.listdir(folderpath):
+    #     if not target.startswith("_"):
+    #         targetpath = tutorial_path.joinpath(folder, target)
+    #         if not targetpath.exists():
+    #             sourcepath = folderpath.joinpath(target)
+    #             os.symlink(sourcepath, targetpath)
 
 # -- General configuration ---------------------------------------------------
 
