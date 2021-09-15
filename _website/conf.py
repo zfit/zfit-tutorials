@@ -28,27 +28,6 @@ author = "zfit"
 
 # sphinx can't handle relative pathes, so add repo as symlink
 project_dir = Path(__file__).parents[1]
-tutorial_path = Path(project_dir).joinpath("_website", "tutorials")
-# if tutorial_path.exists():
-#     shutil.rmtree(tutorial_path)
-tutorial_path.mkdir(exist_ok=True)
-# tutorial_path.mkdir(parents=True, exist_ok=True)
-for folder in ["introduction", "components", "guides", "TensorFlow"]:
-    sourcepath = project_dir.joinpath(folder)
-    targetpath = tutorial_path.joinpath(folder)
-    sysrsync.run(
-        source=str(sourcepath),
-        destination=str(targetpath),
-        sync_source_contents=True,
-        options=["-a"],
-        verbose=True,
-    )
-    # for target in os.listdir(folderpath):
-    #     if not target.startswith("_"):
-    #         targetpath = tutorial_path.joinpath(folder, target)
-    #         if not targetpath.exists():
-    #             sourcepath = folderpath.joinpath(target)
-    #             os.symlink(sourcepath, targetpath)
 
 # -- General configuration ---------------------------------------------------
 
@@ -97,7 +76,7 @@ html_theme = "sphinx_book_theme"
 html_theme_options = {
     "repository_url": f"https://github.com/zfit/{repo_name}",
     "repository_branch": "master",
-    "path_to_docs": "_website",
+    "path_to_docs": "",
     "use_download_button": True,
     "use_edit_page_button": True,
     "use_issues_button": True,
