@@ -39,7 +39,7 @@ repos:
 
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.20.0
+    rev: v2.29.0
     hooks:
       - id: pyupgrade
         args: [ --py37-plus ]
@@ -51,7 +51,7 @@ repos:
 
   # Notebook formatting
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 0.13.1
+    rev: 1.1.1
     hooks:
       - id: nbqa-isort
         additional_dependencies: [ isort==5.6.4 ]
@@ -62,19 +62,19 @@ repos:
         args: [ --py36-plus, --nbqa-mutate]
 
   - repo: https://github.com/mgedmin/check-manifest
-    rev: '0.46'
+    rev: '0.47'
     hooks:
       - id: check-manifest
         stages: [ manual ]
 
   - repo: https://github.com/sondrelg/pep585-upgrade
-    rev: 'ab1595ee0aa8823dcda1f0bd95b2c194fcd5362b'  # Use the sha / tag you want to point at
+    rev: 'v1'  # Use the sha / tag you want to point at
     hooks:
       - id: upgrade-type-hints
         args: [ '--futures=true' ]
 
   - repo: https://github.com/psf/black
-    rev: 21.6b0
+    rev: 21.9b0
     hooks:
       - id: black
         language: python
