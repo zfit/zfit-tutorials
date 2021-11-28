@@ -24,6 +24,16 @@ This tutorial starts with the basics of it.
 
     20 - Composite Models.ipynb
 
+30 Binned Models
++++++++++++++++++++++++
+
+Binned models and data handle differently than their unbinned counterparts.
+
+.. toctree::
+    :maxdepth: 2
+
+    30 - Binned Models.ipynb
+
 50 Custom code and different run modes
 ++++++++++++++++++++++++++++++++++++++++
 
