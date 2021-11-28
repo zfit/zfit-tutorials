@@ -10,7 +10,6 @@ pandas
 particle
 progressbar2
 
-pydata-sphinx-theme  # docs
 seaborn
 sysrsync  # docs
 zfit>=0.8,<0.10
