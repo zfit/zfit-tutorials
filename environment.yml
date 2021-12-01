@@ -16,6 +16,6 @@ dependencies:
   - mplhep
   - hist
   - pip:
-    - zfit >=0.8,<0.10
+    - zfit >=0.8,<0.10 --pre
     - hepstats
     - formulate
