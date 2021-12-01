@@ -12,4 +12,4 @@ progressbar2
 
 seaborn
 sysrsync  # docs
-zfit>=0.8,<0.10
+zfit>=0.9.0a0
