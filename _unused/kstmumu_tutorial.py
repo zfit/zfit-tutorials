@@ -75,7 +75,7 @@ def smear_momenta(four_momenta, smearing=10):
 
 
 def invariant_mass(four_momenta):
-    momenta_squared = four_momenta ** 2
+    momenta_squared = four_momenta**2
     return np.sqrt(momenta_squared[:, 3] - np.sum((momenta_squared[:, :3]), axis=-1))
 
 
