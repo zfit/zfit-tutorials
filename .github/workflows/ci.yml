@@ -18,7 +18,7 @@ jobs:
     name: Run notebooks, Python ${{ matrix.python-version }}, compiled = ${{ matrix.use-graph }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3.1.0
+      - uses: actions/setup-python@v3.1.2
         name: Set up Python ${{ matrix.python-version }}
 
         with:
