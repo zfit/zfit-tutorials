@@ -59,7 +59,7 @@ repos:
 
       - id: nbqa-pyupgrade
         additional_dependencies: [ pyupgrade==2.7.4 ]
-        args: [ --py36-plus, --nbqa-mutate]
+        args: [ --py37-plus, --nbqa-mutate]
 
   - repo: https://github.com/mgedmin/check-manifest
     rev: '0.48'

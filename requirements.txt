@@ -11,5 +11,6 @@ particle
 progressbar2
 
 seaborn
+sphinx-panels  # docs
 sysrsync  # docs
 zfit>=0.9.0a0
