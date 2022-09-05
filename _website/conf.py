@@ -6,6 +6,7 @@ This file only contains a selection of the most common options. For a full
 list see the documentation:
 https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
+
 import atexit
 import os
 
@@ -19,14 +20,13 @@ import sysrsync
 
 project_dir = Path(__file__).parents[1]
 sys.path.insert(0, str(project_dir))
-os.environ["ZFIT_TUTORIALS_ROOT"] = str(project_dir)
+os.environ["ZFIT_TUTORIALS_ROOT"] = f"{project_dir}/"
 
 project = "zfit"
 package = "zfit-tutorials"
 repo_name = "zfit-tutorials"
 copyright = "2021, zfit"
 author = "zfit"
-
 
 # sphinx can't handle relative pathes, so add repo as symlink
 project_dir = Path(__file__).parents[1]
