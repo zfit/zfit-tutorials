@@ -13,11 +13,13 @@ import os
 import shutil
 import sys
 from pathlib import Path
+import os
 
 import sysrsync
 
 project_dir = Path(__file__).parents[1]
 sys.path.insert(0, str(project_dir))
+os.environ["ZFIT_TUTORIALS_ROOT"] = str(project_dir)
 
 project = "zfit"
 package = "zfit-tutorials"
