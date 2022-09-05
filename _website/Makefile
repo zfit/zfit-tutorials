@@ -7,7 +7,9 @@ SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = .
 BUILDDIR      = _build
-
+CURRENT_DIR = dirname -- "$( readlink -f -- "$0"; )"
+export ZFIT_TUTORIAL_ROOT = "$( CURRENT_DIR )/.."
+  # Available for all targets
 # Put it first so that "make" without argument is like "make help".
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
