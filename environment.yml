@@ -15,6 +15,7 @@ dependencies:
   - mplhep
   - hist
   - rsync
+  - sysrsync
   - pip:
     - zfit >=0.10
     - hepstats

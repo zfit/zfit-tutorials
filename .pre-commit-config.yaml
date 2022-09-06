@@ -20,7 +20,7 @@ repos:
       - id: check-ast
 
   - repo: https://github.com/myint/docformatter
-    rev: v1.4
+    rev: v1.5.0
     hooks:
       - id: docformatter
         args: [ -r, --in-place, --wrap-descriptions, '120', --wrap-summaries, '120', -- ]
@@ -39,19 +39,19 @@ repos:
 
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.34.0
+    rev: v2.37.3
     hooks:
       - id: pyupgrade
         args: [ --py37-plus ]
 
   - repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v1.20.1
+    rev: v2.0.0
     hooks:
       - id: setup-cfg-fmt
 
   # Notebook formatting
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.3.1
+    rev: 1.4.0
     hooks:
       - id: nbqa-isort
         additional_dependencies: [ isort==5.6.4 ]
@@ -74,7 +74,7 @@ repos:
         args: [ '--futures=true' ]
 
   - repo: https://github.com/psf/black
-    rev: 22.6.0
+    rev: 22.8.0
     hooks:
       - id: black
         language: python
@@ -85,14 +85,8 @@ repos:
       - id: jupyter-notebook-cleanup
   - repo: local
     hooks:
-      - id: jupyter-notebook-rsync-preinstall
-        name: jupyter-notebook-rsync-preinstall
-        language: conda
-        entry: rsync --version
-        require_serial: true
       - id: jupyter-notebook-rsync
         name: jupytersync
         entry: _website/sync_jupyter_notebooks.py
-        language: python
+        language: conda
         always_run: true
-        additional_dependencies: [ sysrsync ]
