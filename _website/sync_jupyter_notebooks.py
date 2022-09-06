@@ -20,9 +20,9 @@ for folder in ["introduction", "components", "guides", "TensorFlow"]:
         verbose=True,
     )
 
-folder = '_static'
+folder = "_static"
 sourcepath = project_dir.joinpath(folder)
-targetpath = project_dir / '_website' / folder
+targetpath = project_dir / "_website" / folder
 targetpath.mkdir(exist_ok=True)
 sysrsync.run(
     source=str(sourcepath),

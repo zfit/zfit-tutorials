@@ -85,9 +85,14 @@ repos:
       - id: jupyter-notebook-cleanup
   - repo: local
     hooks:
+      - id: jupyter-notebook-rsync-preinstall
+        name: jupyter-notebook-rsync-preinstall
+        language: conda
+        entry: rsync --version
+        require_serial: true
       - id: jupyter-notebook-rsync
         name: jupytersync
         entry: _website/sync_jupyter_notebooks.py
-        language: system
+        language: python
         always_run: true
         additional_dependencies: [ sysrsync ]
