@@ -83,12 +83,13 @@ repos:
     rev: v1.2.1
     hooks:
       - id: jupyter-notebook-cleanup
+
   - repo: local
     hooks:
       - id: jupyter-notebook-rsync
         name: jupytersync
-        entry: python _website/sync_jupyter_notebooks.py
         language: conda
-        always_run: true
         types:
           - python
+        entry: _website/sync_jupyter_notebooks.py
+#        always_run: true
