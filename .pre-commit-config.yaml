@@ -1,5 +1,5 @@
 ci:
-    autoupdate_schedule: quarterly
+  autoupdate_schedule: quarterly
 
 repos:
 
@@ -59,7 +59,7 @@ repos:
 
       - id: nbqa-pyupgrade
         additional_dependencies: [ pyupgrade==2.7.4 ]
-        args: [ --py37-plus, --nbqa-mutate]
+        args: [ --py37-plus, --nbqa-mutate ]
 
   - repo: https://github.com/mgedmin/check-manifest
     rev: '0.48'
@@ -92,4 +92,5 @@ repos:
         types:
           - python
         entry: _website/sync_jupyter_notebooks.py
-#        always_run: true
+        additional_dependencies: [ -c, conda-forge, rsync ]
+        always_run: true
