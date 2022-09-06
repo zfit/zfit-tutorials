@@ -32,7 +32,7 @@ Binned models and data handle differently than their unbinned counterparts.
 .. toctree::
     :maxdepth: 2
 
-    30 - Binned models.ipynb
+    30 - Binned Models.ipynb
 
 50 Custom code and different run modes
 ++++++++++++++++++++++++++++++++++++++++
