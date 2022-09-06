@@ -129,6 +129,7 @@ nb_render_priority = {
 }
 
 jupyter_execute_notebooks = "cache"
+# jupyter_execute_notebooks = "force"
 execution_excludepatterns = [
     "B2KstLL.py",
     "*_website*",
@@ -147,6 +148,7 @@ myst_enable_extensions = [
     "colon_fence",
     "dollarmath",
     "smartquotes",
+    "html_image",
 ]
 myst_update_mathjax = False
 

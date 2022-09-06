@@ -88,6 +88,6 @@ repos:
       - id: jupyter-notebook-rsync
         name: jupytersync
         entry: _website/sync_jupyter_notebooks.py
-        language: python
+        language: system
         always_run: true
         additional_dependencies: [ sysrsync ]
