@@ -125,7 +125,6 @@ def plotlimit(ul, alpha=0.05, CLs=True, ax=None):
 
 
 def one_minus_cl_plot(ci, alpha=[0.32], ax=None):
-
     x = ci.poinull.values
     pvalues = ci.pvalues()
 

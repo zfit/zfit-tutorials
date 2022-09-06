@@ -87,6 +87,8 @@ repos:
     hooks:
       - id: jupyter-notebook-rsync
         name: jupytersync
-        entry: _website/sync_jupyter_notebooks.py
+        entry: python _website/sync_jupyter_notebooks.py
         language: conda
         always_run: true
+        types:
+          - python
