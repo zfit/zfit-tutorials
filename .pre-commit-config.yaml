@@ -88,9 +88,8 @@ repos:
     hooks:
       - id: jupyter-notebook-rsync
         name: jupytersync
-        language: conda
+        language: system
         types:
           - python
-        entry: _website/sync_jupyter_notebooks.py
-        additional_dependencies: [ -c, conda-forge, rsync ]
+        entry:  conda env create --file environment.yml && conda activate zfit-tutorial && python _website/sync_jupyter_notebooks.py
         always_run: true
