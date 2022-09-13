@@ -4,6 +4,7 @@ hist
 jupyter-book  # docs
 matplotlib
 mplhep
+nbval
 numba
 numpy
 pandas
@@ -11,6 +12,7 @@ particle
 progressbar2
 
 seaborn
+skhep_testdata
 sphinx-panels  # docs
 sysrsync  # docs
 zfit>=0.10.1
