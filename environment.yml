@@ -14,9 +14,8 @@ dependencies:
   - progressbar2
   - mplhep
   - hist
-  - rsync
   - pip:
     - zfit >=0.10.1
     - hepstats
     - formulate
-    - sysrsync
+    - skhep_testdata
