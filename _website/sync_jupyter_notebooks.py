@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import filecmp
 import shutil
 
 # sphinx can't handle relative pathes, so add repo rsynced. Ugly!
@@ -12,7 +13,15 @@ for folder in ["introduction", "components", "guides", "TensorFlow"]:
     sourcepath = project_dir.joinpath(folder)
     targetpath = tutorial_path.joinpath(folder)
     targetpath.mkdir(exist_ok=True)
-    shutil.copytree(sourcepath, targetpath, dirs_exist_ok=True)
+    comparison = filecmp.dircmp(sourcepath, targetpath)
+    # only update if missing or changed
+    if not (
+        comparison.left_only
+        or comparison.right_only
+        or comparison.diff_files
+        or comparison.funny_files
+    ):
+        shutil.copytree(sourcepath, targetpath, dirs_exist_ok=True)
 
 
 folder = "_static"
