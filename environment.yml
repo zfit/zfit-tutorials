@@ -14,8 +14,8 @@ dependencies:
   - progressbar2
   - mplhep
   - hist
+  - scikit-hep-testdata
   - pip:
     - zfit >=0.10.1
     - hepstats
     - formulate
-    - skhep_testdata
