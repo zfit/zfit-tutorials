@@ -2,6 +2,7 @@ name: zfit-tutorials
 channels:
   - conda-forge
 dependencies:
+  - python=3.10
   - hepunits
   - matplotlib
   - numpy
