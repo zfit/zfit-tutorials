@@ -42,6 +42,7 @@ reso_smearing = 7
 # PHASESPACE GENERATION OF RARE SIGNAL
 # *************************************************
 
+
 # kstar is resonant, we define here the sampling of the mass
 # therefore we can use zfit PDF or TensorFlow Probability (or anything if wrappet with `tf.py_function`
 def kstar_mass(min_mass, max_mass, n_events):
