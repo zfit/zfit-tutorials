@@ -15,13 +15,6 @@ for folder in ["introduction", "components", "guides", "TensorFlow"]:
     targetpath.mkdir(exist_ok=True)
     comparison = filecmp.dircmp(sourcepath, targetpath, ignore=[".ipynb_checkpoints"])
     # only update if missing or changed
-    print(
-        "DEBUG",
-        comparison.left_only,
-        comparison.diff_files,
-        comparison.funny_files,
-        comparison.right_only,
-    )
     if (
         comparison.left_only
         or comparison.right_only
