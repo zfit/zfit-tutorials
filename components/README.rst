@@ -33,6 +33,10 @@ Binned models and data handle differently than their unbinned counterparts.
     :maxdepth: 2
 
     30 - Binned models.ipynb
+    31 - Fitting a histogram with binned losses.ipynb
+    32 - Templated fits.ipynb
+    33 - Binned fits.ipynb
+
 
 50 Custom code and different run modes
 ++++++++++++++++++++++++++++++++++++++++
