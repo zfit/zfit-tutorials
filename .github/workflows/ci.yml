@@ -31,4 +31,4 @@ jobs:
       - name: Run notebooks
         run: |
           ZFIT_DO_JIT=${{ matrix.use-graph }}
-          pytest --nbval-lax --ignore=experimental --ignore=_unused
+          pytest --nbval-lax --ignore=experimental --ignore=_unused --ignore=_website
