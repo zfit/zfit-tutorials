@@ -4,6 +4,14 @@ Components
 This tutorials introduce in more depth specific components
 of zfit.
 
+05 FitResult
+++++++++++++++
+
+.. toctree::
+    :maxdepth: 2
+
+    05 - Exploring the FitResult.ipynb
+
 
 13 Kernel Density Estimation
 ++++++++++++++++++++++++++++++++
