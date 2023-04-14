@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 /_website/_build/
 /_website/.jupiter_cache/
+/.idea/sonarlint/**
