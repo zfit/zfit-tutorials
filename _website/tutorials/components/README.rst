@@ -91,3 +91,15 @@ A minimal example of how to manually perform toy studies with zfit.
     :maxdepth: 2
 
     80 Toy Study.ipynb
+
+90 Serialization
+++++++++++++++++
+
+There are multiple ways of serializing zfit objects, this tutorial introduces them.
+
+.. warning:: Parts of it, namely the HS3-like human-readable serialization is still highly experimental and will change in every release.
+
+.. toctree::
+    :maxdepth: 2
+
+    90 - Serialization basics.ipynb
