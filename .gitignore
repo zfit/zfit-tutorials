@@ -105,3 +105,7 @@ venv.bak/
 /_website/_build/
 /_website/.jupiter_cache/
 /.idea/sonarlint/**
+/.idea/deployment.xml
+/.idea/git_toolbox_prj.xml
+/.idea/GitLink.xml
+/.idea/markdown.xml
