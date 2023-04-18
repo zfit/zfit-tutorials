@@ -15,5 +15,5 @@ scikit-hep-testdata
 seaborn
 sphinx-panels  # docs
 sysrsync  # docs
-zfit>=0.10.1
+zfit>=0.12
 zfit-physics>=0.2.0
