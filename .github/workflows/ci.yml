@@ -36,4 +36,4 @@ jobs:
       - name: Run notebooks
         run: |
           ZFIT_DO_JIT=${{ matrix.use-graph }}
-          pytest --nbval-lax --ignore=experimental --ignore=_unused --ignore=_website -n${{ steps.cpu-cores.outputs.count }}
+          pytest --nbval-lax --dist loadscope --ignore=experimental --ignore=_unused --ignore=_website -n${{ steps.cpu-cores.outputs.count }}
