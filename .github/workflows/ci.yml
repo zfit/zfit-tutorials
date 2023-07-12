@@ -17,6 +17,9 @@ jobs:
         python-version: [ "3.8", "3.11" ]
     name: Run notebooks, Python ${{ matrix.python-version }}, compiled = ${{ matrix.use-graph }}
     steps:
+      - uses: SimenB/github-actions-cpu-cores@v1
+        name: Get number of CPU cores
+        id: cpu-cores
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         name: Set up Python ${{ matrix.python-version }}
@@ -32,4 +35,4 @@ jobs:
       - name: Run notebooks
         run: |
           ZFIT_DO_JIT=${{ matrix.use-graph }}
-          pytest --nbval-lax --ignore=experimental --ignore=_unused --ignore=_website
+          pytest --nbval-lax --ignore=experimental --ignore=_unused --ignore=_website -n${{ steps.cpu-cores.outputs.count }}
