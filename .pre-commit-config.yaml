@@ -42,7 +42,7 @@ repos:
     rev: v3.8.0
     hooks:
       - id: pyupgrade
-        args: [ --py37-plus ]
+        args: [ --py38-plus ]
 
   - repo: https://github.com/asottile/setup-cfg-fmt
     rev: v2.4.0
@@ -59,7 +59,7 @@ repos:
 
       - id: nbqa-pyupgrade
         additional_dependencies: [ pyupgrade==2.7.4 ]
-        args: [ --py37-plus]
+        args: [ --py38-plus]
 
   - repo: https://github.com/mgedmin/check-manifest
     rev: '0.49'

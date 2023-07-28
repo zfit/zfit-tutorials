@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 
 def plotlimit(ul, alpha=0.05, CLs=True, ax=None):
-    """plot pvalue scan for different values of a parameter of interest (observed, expected and +/- sigma bands)
+    """Plot pvalue scan for different values of a parameter of interest (observed, expected and +/- sigma bands)
 
     Args:
         ul: UpperLimit instance
