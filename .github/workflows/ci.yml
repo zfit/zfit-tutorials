@@ -21,7 +21,7 @@ jobs:
         python-version: [ "3.8", "3.11" ]
     name: Run notebooks, Python ${{ matrix.python-version }}, compiled = ${{ matrix.use-graph }}
     steps:
-      - uses: SimenB/github-actions-cpu-cores@v1
+      - uses: SimenB/github-actions-cpu-cores@v2
         name: Get number of CPU cores
         id: cpu-cores
       - uses: actions/checkout@v4
