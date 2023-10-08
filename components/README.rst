@@ -90,7 +90,7 @@ A minimal example of how to manually perform toy studies with zfit.
 .. toctree::
     :maxdepth: 2
 
-    80 Toy Study.ipynb
+    80 - Toy Study.ipynb
 
 90 Serialization
 ++++++++++++++++
@@ -103,3 +103,5 @@ There are multiple ways of serializing zfit objects, this tutorial introduces th
     :maxdepth: 2
 
     90 - Serialization basics.ipynb
+
+If any component is missing, please open an issue on `github <https://github.com/zfit/zfit-tutorials/issues/new?title=Tutorial%20missing%20component>`_.
