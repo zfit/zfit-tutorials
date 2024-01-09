@@ -55,7 +55,7 @@ repos:
 
       - id: nbqa-pyupgrade
         additional_dependencies: [ pyupgrade==2.7.4 ]
-        args: [ --py38-plus]
+        args: [ --py38-plus ]
 
   - repo: https://github.com/mgedmin/check-manifest
     rev: '0.49'
@@ -64,7 +64,7 @@ repos:
         stages: [ manual ]
 
   - repo: https://github.com/sondrelg/pep585-upgrade
-    rev: 'v1.0'  # Use the sha / tag you want to point at
+    rev: 'v1.0'
     hooks:
       - id: upgrade-type-hints
         args: [ '--futures=true' ]
@@ -75,11 +75,12 @@ repos:
       - id: black
         language: python
 
-  - repo: https://github.com/roy-ht/pre-commit-jupyter
-    rev: v1.2.1
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
     hooks:
-      - id: jupyter-notebook-cleanup
-  - repo: local
+      - id: nbstripout
+
+  - repo: local  # if this sync fails, make sure to add all, possibly new, notebooks to the sync script and run pre-commit with --all-files
     hooks:
       - id: jupyter-notebook-rsync
         name: jupytersync
