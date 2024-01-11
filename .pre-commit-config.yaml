@@ -75,6 +75,12 @@ repos:
       - id: black
         language: python
 
+
+  - repo: https://github.com/janosh/format-ipy-cells
+    rev: v0.1.10
+    hooks:
+      - id: format-ipy-cells
+
   - repo: https://github.com/kynan/nbstripout
     rev: 0.6.1
     hooks:
