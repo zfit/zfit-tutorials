@@ -17,6 +17,7 @@ dependencies:
   - hist
   - scikit-hep-testdata
   - zfit >=0.14.1
+  - zfit_physics
   - hepstats
   - pip:
     - formulate
