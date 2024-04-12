@@ -11,9 +11,8 @@ pandas
 particle
 progressbar2
 scikit-hep-testdata
-
 seaborn
 sphinx-panels  # docs
 sysrsync  # docs
-zfit>=0.14
-zfit-physics>=0.2.0
+zfit>=0.20
+zfit-physics>=0.6

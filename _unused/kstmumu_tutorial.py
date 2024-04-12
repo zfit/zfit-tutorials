@@ -256,9 +256,9 @@ def plot_pdf_data(data, model, title, n_bins=40):
         histtype="step",
     )
     # plot the pdfs
-    y = model.pdf(x).numpy()
-    y_sig = (model.pdfs[0].pdf(x) * model.fracs[0]).numpy()  # notice the frac!
-    y_bkg = (model.pdfs[1].pdf(x) * model.fracs[1]).numpy()  # notice the frac!
+    y = model.pdf(x)
+    y_sig = model.pdfs[0].pdf(x) * model.fracs[0]  # notice the frac!
+    y_bkg = model.pdfs[1].pdf(x) * model.fracs[1]  # notice the frac!
 
     plt.plot(x, y * plot_scaling, label="Sum - Model", linewidth=linewidth * 2)
     plt.plot(
