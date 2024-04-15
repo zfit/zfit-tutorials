@@ -62,4 +62,4 @@ for the zfit project.
 They can all be launched (rocket button upper right), but you can also launch all of them in
 
 .. image:: https://mybinder.org/badge.svg
-   :target: https://mybinder.org/v2/gh/zfit/zfit-tutorials/master
+   :target: https://mybinder.org/v2/gh/zfit/zfit-tutorials/main

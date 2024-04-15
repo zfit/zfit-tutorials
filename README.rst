@@ -14,4 +14,4 @@ contributions are very welcome!
 The whole repository can also be launched in binder here (instead of over the website)
 
 .. image:: https://mybinder.org/badge.svg
-   :target: https://mybinder.org/v2/gh/zfit/zfit-tutorials/master
+   :target: https://mybinder.org/v2/gh/zfit/zfit-tutorials/main
