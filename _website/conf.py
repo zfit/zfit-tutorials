@@ -75,7 +75,7 @@ html_static_path = ["_static"]
 html_theme = "sphinx_book_theme"
 html_theme_options = {
     "repository_url": f"https://github.com/zfit/{repo_name}",
-    "repository_branch": "master",
+    "repository_branch": "main",
     "path_to_docs": "_website",
     "use_download_button": True,
     "use_edit_page_button": True,
