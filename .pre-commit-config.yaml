@@ -3,7 +3,7 @@ ci:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
@@ -51,7 +51,6 @@ repos:
     hooks:
       - id: nbqa-isort
         additional_dependencies: [ isort==5.6.4 ]
-        args: [ --nbqa-mutate ]
 
       - id: nbqa-pyupgrade
         additional_dependencies: [ pyupgrade==2.7.4 ]
@@ -67,10 +66,9 @@ repos:
     rev: 'v1.0'
     hooks:
       - id: upgrade-type-hints
-        args: [ '--futures=true' ]
 
   - repo: https://github.com/psf/black
-    rev: 24.3.0
+    rev: 24.4.0
     hooks:
       - id: black
         language: python

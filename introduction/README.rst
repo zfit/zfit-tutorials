@@ -25,3 +25,13 @@ that explain the elementary aspects of zfit.
 
     Introduction.ipynb
     Introduction_long.ipynb
+
+What's new
++++++++++++
+
+To know about the newest features in version 0.20+, see the changelog and the guide.
+
+.. toctree::
+    :maxdepth: 2
+
+    upgrade_guide_020.ipynb
