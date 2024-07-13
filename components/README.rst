@@ -80,6 +80,14 @@ Building a pdf in multiple dimensions and registering an analytic integral.
 
     62 - Multidim Custom PDF.ipynb
 
+77 - Custom Minimizers
+++++++++++++++++++++++++++++
+
+.. toctree::
+    :maxdepth: 2
+
+    77 - Custom Minimizers.ipynb
+
 
 
 80 Toy Study
