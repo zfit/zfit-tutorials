@@ -233,7 +233,7 @@ model_rare = zfit.pdf.SumPDF([extended_bkg_rare, extended_sig_rare])
 def plot_pdf_data(data, model, title, n_bins=40):
     linewidth = 2.5
     space = data.data_range
-    plot_scaling = data.nevents / n_bins * space.area()
+    plot_scaling = data.nevents / n_bins * space.volume
     lower, upper = space.limit1d
     x = np.linspace(lower, upper, 1000)
 
