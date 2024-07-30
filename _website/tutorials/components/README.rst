@@ -83,10 +83,12 @@ Building a pdf in multiple dimensions and registering an analytic integral.
 77 - Custom Minimizers
 ++++++++++++++++++++++++++++
 
+Building a custom minimizer in zfit.
+
 .. toctree::
     :maxdepth: 2
 
-    77 - Custom Minimizers.ipynb
+    77 - Custom Minimizer.ipynb
 
 
 

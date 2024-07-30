@@ -136,6 +136,8 @@ execution_excludepatterns = [
     "Summary.ipynb",
 ]
 jupyter_cache_path = project_dir.joinpath("_website", ".jupiter_cache")
+# remove cache directory to clean if needed
+# shutil.rmtree(jupyter_cache_path, ignore_errors=True)
 jupyter_cache_path.mkdir(exist_ok=True)
 if jupyter_execute_notebooks == "cache":
     jupyter_cache = str(jupyter_cache_path)
