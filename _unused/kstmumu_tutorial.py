@@ -151,7 +151,7 @@ right_tale_data_rare = zfit.Data.from_numpy(
 lambda_rare.set_value(-0.003)
 
 # here we temporarily set the normalization range to the right side only
-with comb_bkg_rare.set_norm_range(obs_bkg):
+with comb_bkg_rare.set_norm(obs_bkg):
     right_tale_loss = zfit.loss.UnbinnedNLL(comb_bkg_rare, right_tale_data_rare)
     minimizer = zfit.minimize.Minuit(verbosity=7)
     result_right_tale = minimizer.minimize(right_tale_loss)
@@ -187,7 +187,7 @@ plt.hist(rare_data_np, weights=rare_weights_np, bins=40)
 # create the model to fit
 
 # set the normalization range of the exponential to the whole range
-comb_bkg_rare.set_norm_range(obs)
+comb_bkg_rare.set_norm(obs)
 
 # parameters for the model
 mu = zfit.Parameter("mu", 5270, 5200, 5350)
