@@ -2,7 +2,7 @@ name: zfit-tutorials
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
+  - python=3.12
   - hepunits
   - matplotlib
   - numpy
@@ -20,5 +20,5 @@ dependencies:
   - hepstats
   - pip:
     - formulate
-    - zfit >=0.14.1
+    - zfit >=0.20
     - zfit-physics

@@ -80,6 +80,17 @@ Building a pdf in multiple dimensions and registering an analytic integral.
 
     62 - Multidim Custom PDF.ipynb
 
+71 - Simple Loss
+++++++++++++++++++++++++++++
+
+A simple loss doesn't need a distribution or data, it just needs a function to minimize.
+
+.. toctree::
+    :maxdepth: 2
+
+    71 - Simple Loss.ipynb
+
+
 77 - Custom Minimizers
 ++++++++++++++++++++++++++++
 
