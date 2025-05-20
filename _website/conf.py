@@ -5,16 +5,13 @@ This file only contains a selection of the most common options. For a full list 
 https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
 
-import atexit
 import os
 
 # -- Project information -----------------------------------------------------
-import shutil
 import sys
 from pathlib import Path
-import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-import sysrsync
 
 project_dir = Path(__file__).parents[1]
 sys.path.insert(0, str(project_dir))
@@ -63,6 +60,7 @@ exclude_patterns = [
     "*build",
     "adr*",
     "tests",
+    "**/.jupyter_cache",
 ]
 
 html_copy_source = True  # needed for download notebook button
