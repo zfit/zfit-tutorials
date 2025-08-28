@@ -86,7 +86,6 @@ html_theme_options = {
         "thebe": True,
         "thebelab": True,
     },
-    "theme_dev_mode": True,
 }
 html_title = "tutorials"
 panels_add_bootstrap_css = False  # wider page width with sphinx-panels
@@ -108,7 +107,7 @@ copybutton_prompt_is_regexp = True
 copybutton_prompt_text = r">>> |\.\.\. "  # doctest
 
 # Settings for myst_nb
-execution_timeout = -1
+nb_execution_timeout = -1
 nb_output_stderr = "remove"
 nb_render_priority = {
     "html": (
@@ -124,9 +123,9 @@ nb_render_priority = {
     )
 }
 
-jupyter_execute_notebooks = "cache"
+nb_execution_mode = "cache"
 # jupyter_execute_notebooks = "force"
-execution_excludepatterns = [
+nb_execution_excludepatterns = [
     "B2KstLL.py",
     "*_website*",
     "kstmumu_tutorial.py",
@@ -137,8 +136,8 @@ jupyter_cache_path = project_dir.joinpath("_website", ".jupiter_cache")
 # remove cache directory to clean if needed
 # shutil.rmtree(jupyter_cache_path, ignore_errors=True)
 jupyter_cache_path.mkdir(exist_ok=True)
-if jupyter_execute_notebooks == "cache":
-    jupyter_cache = str(jupyter_cache_path)
+if nb_execution_mode == "cache":
+    nb_execution_cache_path = str(jupyter_cache_path)
 
 # Settings for myst-parser
 myst_enable_extensions = [

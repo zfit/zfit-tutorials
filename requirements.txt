@@ -9,7 +9,6 @@ numba
 numpy
 pandas
 particle
-progressbar2
 scikit-hep-testdata
 seaborn
 sphinx-panels  # docs

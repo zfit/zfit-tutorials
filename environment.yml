@@ -13,12 +13,11 @@ dependencies:
   - uv
   - scipy
   - xgboost
-  - progressbar2
   - mplhep
   - hist
   - scikit-hep-testdata
   - hepstats
+  - zfit >=0.26
+  - zfit-physics
   - pip:
     - formulate
-    - zfit >=0.20
-    - zfit-physics

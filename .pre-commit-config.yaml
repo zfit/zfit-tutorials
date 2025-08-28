@@ -3,7 +3,7 @@ ci:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
@@ -33,7 +33,7 @@ repos:
     rev: v3.20.0
     hooks:
       - id: pyupgrade
-        args: [ --py39-plus ]
+        args: [ --py310-plus ]
 
   - repo: https://github.com/asottile/setup-cfg-fmt
     rev: v2.8.0
@@ -49,34 +49,19 @@ repos:
 
       - id: nbqa-pyupgrade
         additional_dependencies: [ pyupgrade]
-        args: [ --py39-plus ]
-
-  - repo: https://github.com/mgedmin/check-manifest
-    rev: '0.50'
-    hooks:
-      - id: check-manifest
-        stages: [ manual ]
+        args: [ --py310-plus ]
 
   - repo: https://github.com/sondrelg/pep585-upgrade
     rev: 'v1.0'
     hooks:
       - id: upgrade-type-hints
 
-# TODO: requires Python 3.10+
-#  - repo: https://github.com/janosh/format-ipy-cells
-#    rev: v0.1.11
-#    hooks:
-#      - id: format-ipy-cells
+  - repo: https://github.com/janosh/format-ipy-cells
+    rev: v0.1.11
+    hooks:
+      - id: format-ipy-cells
 
   - repo: https://github.com/kynan/nbstripout
     rev: 0.8.1
     hooks:
       - id: nbstripout
-
-  - repo: local  # if this sync fails, make sure to add all, possibly new, notebooks to the sync script and run pre-commit with --all-files
-    hooks:
-      - id: jupyter-notebook-rsync
-        name: jupytersync
-        language: python
-        entry: _website/sync_jupyter_notebooks.py
-        always_run: true
