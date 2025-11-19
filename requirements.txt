@@ -4,6 +4,7 @@ hist
 jupyter-book  # docs
 matplotlib
 mplhep
+myst-nb
 nbval
 numba
 numpy
@@ -11,7 +12,12 @@ pandas
 particle
 scikit-hep-testdata
 seaborn
+sphinx>5
+sphinx-book-theme
+sphinx-copybutton
 sphinx-panels  # docs
+sphinx-thebe
+sphinx-togglebutton
 sysrsync  # docs
 zfit>=0.20
 zfit-physics>=0.6
