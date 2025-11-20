@@ -17,7 +17,7 @@ jobs:
       fail-fast: False
       matrix:
         use-graph: [ 0, 1 ]
-        python-version: [ "3.9", "3.12" ]
+        python-version: [ "3.10", "3.13" ]
     name: Run notebooks, Python ${{ matrix.python-version }}, compiled = ${{ matrix.use-graph }}
     steps:
       - uses: SimenB/github-actions-cpu-cores@v2
@@ -32,10 +32,10 @@ jobs:
       - shell: bash -l {0}
         name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install pytest-xdist nbval
-          pip install -U -r requirements.txt
-          pip install git+https://github.com/zfit/zfit
+          python -m pip install uv
+          uv pip install --system pytest-xdist nbval
+          uv pip install --system -U -r requirements.txt
+          uv pip install --system git+https://github.com/zfit/zfit
       - name: Run notebooks
         run: |
           ZFIT_DO_JIT=${{ matrix.use-graph }}
