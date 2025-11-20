@@ -10,15 +10,23 @@ on:
 
 jobs:
   notebooks:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 150
     strategy:
       max-parallel: 8
       fail-fast: False
       matrix:
+        os: [ ubuntu-latest ]
         use-graph: [ 0, 1 ]
         python-version: [ "3.10", "3.13" ]
-    name: Run notebooks, Python ${{ matrix.python-version }}, compiled = ${{ matrix.use-graph }}
+        include:
+          - os: macos-latest
+            python-version: "3.13"
+            use-graph: 1
+          - os: windows-latest
+            python-version: "3.13"
+            use-graph: 1
+    name: Run notebooks, ${{ matrix.os }}, Python ${{ matrix.python-version }}, compiled = ${{ matrix.use-graph }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
