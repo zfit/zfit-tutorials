@@ -45,6 +45,16 @@ Binned models and data handle differently than their unbinned counterparts.
     32 - Templated fits.ipynb
     33 - Binned fits.ipynb
 
+40 Bayesian Inference
+++++++++++++++++++++++++++++
+
+Bayesian inference is a powerful tool to infer parameters given data and a model.
+
+.. toctree::
+    :maxdepth: 2
+
+    40 - Bayesian inference.ipynb
+
 
 50 Custom code and different run modes
 ++++++++++++++++++++++++++++++++++++++++
@@ -68,6 +78,16 @@ This tutorial introduces the two main ways of doing it, a simpler and a more adv
     :maxdepth: 2
 
     60 - Custom PDF.ipynb
+
+61 Custom Binned PDF
+++++++++++++++++++++++++++++
+
+Building a binned pdf in zfit.
+
+.. toctree::
+    :maxdepth: 2
+
+    61 - Binned Custom PDF.ipynb
 
 
 62 Multidimensional custom PDF
