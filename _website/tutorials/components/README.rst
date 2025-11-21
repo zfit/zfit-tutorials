@@ -53,7 +53,7 @@ Bayesian inference is a powerful tool to infer parameters given data and a model
 .. toctree::
     :maxdepth: 2
 
-    40 - Bayesian inference.ipynb
+    40 - Bayesian Inference.ipynb
 
 
 50 Custom code and different run modes
