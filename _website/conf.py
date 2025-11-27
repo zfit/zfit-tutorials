@@ -60,7 +60,9 @@ exclude_patterns = [
     "*build",
     "adr*",
     "tests",
-    "**/.jupyter_cache",
+    ".jupiter_cache",
+    ".jupiter_cache/*",
+    ".jupiter_cache/**/*",
 ]
 
 html_copy_source = True  # needed for download notebook button
@@ -109,19 +111,18 @@ copybutton_prompt_text = r">>> |\.\.\. "  # doctest
 # Settings for myst_nb
 nb_execution_timeout = -1
 nb_output_stderr = "remove"
-nb_render_priority = {
-    "html": (
-        "application/vnd.jupyter.widget-view+json",
-        "application/javascript",
-        "text/html",
-        "image/svg+xml",
-        "image/png",
-        "image/jpeg",
-        "text/markdown",
-        "text/latex",
-        "text/plain",
-    )
-}
+# Priority overrides for mime types (lower number = higher priority)
+nb_mime_priority_overrides = [
+    ("html", "application/vnd.jupyter.widget-view+json", 0),
+    ("html", "application/javascript", 10),
+    ("html", "text/html", 20),
+    ("html", "image/svg+xml", 30),
+    ("html", "image/png", 40),
+    ("html", "image/jpeg", 50),
+    ("html", "text/markdown", 60),
+    ("html", "text/latex", 70),
+    ("html", "text/plain", 80),
+]
 
 nb_execution_mode = "cache"
 # jupyter_execute_notebooks = "force"

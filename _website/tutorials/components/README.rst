@@ -87,7 +87,7 @@ Building a binned pdf in zfit.
 .. toctree::
     :maxdepth: 2
 
-    61 - Binned Custom PDF.ipynb
+    61 - Custom Binned PDF.ipynb
 
 
 62 Multidimensional custom PDF
@@ -109,6 +109,16 @@ A simple loss doesn't need a distribution or data, it just needs a function to m
     :maxdepth: 2
 
     71 - Simple Loss.ipynb
+
+72 - Custom Loss
+++++++++++++++++++++++++++++
+
+Building a custom loss function in zfit.
+
+.. toctree::
+    :maxdepth: 2
+
+    72 - Custom Loss.ipynb
 
 
 77 - Custom Minimizers

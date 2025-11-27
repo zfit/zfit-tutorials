@@ -24,6 +24,16 @@ A comprehensive, modern introduction that explains the elementary aspects of zfi
 
     Introduction.ipynb
 
+Extended Tutorial
++++++++++++++++++
+
+A longer, more detailed introduction covering additional topics.
+
+.. toctree::
+    :maxdepth: 2
+
+    Introduction_long.ipynb
+
 What's new
 +++++++++++
 
