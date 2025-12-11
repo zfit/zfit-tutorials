@@ -19,5 +19,5 @@ sphinx-panels  # docs
 sphinx-thebe
 sphinx-togglebutton
 sysrsync  # docs
-zfit>=0.20
 zfit-physics>=0.6
+zfit[all]>=0.28
