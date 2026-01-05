@@ -28,7 +28,7 @@ jobs:
             use-graph: 1
     name: Run notebooks, ${{ matrix.os }}, Python ${{ matrix.python-version }}, compiled = ${{ matrix.use-graph }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         name: Set up Python ${{ matrix.python-version }}
         with:
