@@ -30,13 +30,13 @@ repos:
 
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.20.0
+    rev: v3.21.2
     hooks:
       - id: pyupgrade
         args: [ --py310-plus ]
 
   - repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v2.8.0
+    rev: v3.2.0
     hooks:
       - id: setup-cfg-fmt
 
@@ -62,6 +62,6 @@ repos:
       - id: format-ipy-cells
 
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.8.1
+    rev: 0.9.1
     hooks:
       - id: nbstripout
