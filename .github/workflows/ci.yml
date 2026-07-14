@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         use-graph: [ 0, 1 ]
-        python-version: [ "3.10", "3.13" ]
+        python-version: [ "3.12", "3.13" ]
         include:
           - os: macos-latest
             python-version: "3.13"
